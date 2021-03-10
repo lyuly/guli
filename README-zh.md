@@ -1,6 +1,6 @@
-# vue-admin-template
+# 谷粒学院
 
-> 这是一个极简的 vue admin 管理后台。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
+> 这是尚硅谷谷粒学院项目的管理后台。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
 
 [线上地址](http://panjiachen.github.io/vue-admin-template)
 
