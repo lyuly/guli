@@ -26,7 +26,7 @@
         </p>
 
         <!-- 视频 -->
-        <u class="chanpterList videoList">
+        <ul class="chanpterList videoList">
           <li v-for="video in chapter.children" :key="video.id">
             <p>{{ video.title }}
 
@@ -36,7 +36,7 @@
               </span>
             </p>
           </li>
-        </u>
+        </ul>
 
       </li>
     </ul>
@@ -98,6 +98,7 @@ export default {
   data() {
     return {
       saveBtnDisabled: false, // 保存按钮是否禁用
+      saveVideoBtnDisabled: false,
       courseId: '', // 课程id
       chapterVideoList: [],
       chapter: { // 封装章节数据
@@ -126,7 +127,7 @@ export default {
   methods: {
     // 删除小节
     removeVideo(id) {
-      this.$confirm('此操作将删除小节，是否继续', '提示', {
+      this.$confirm('此操作将删除小节，是否继续？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
