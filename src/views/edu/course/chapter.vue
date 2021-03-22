@@ -20,7 +20,7 @@
 
           <span class="acts">
             <el-button type="text" @click="openVideo(chapter.id)">添加小节</el-button>
-            <el-button style="" type="text" @click="openEditChatper(chapter.id)">编辑</el-button>
+            <el-button style="" type="text" @click="openEditChapter(chapter.id)">编辑</el-button>
             <el-button type="text" @click="removeChapter(chapter.id)">删除</el-button>
           </span>
         </p>
@@ -68,7 +68,7 @@
           <el-input v-model="video.title" />
         </el-form-item>
         <el-form-item label="课时排序">
-          <el-input-number v-model="video.osrt" :min="0" controls-position="right" />
+          <el-input-number v-model="video.sort" :min="0" controls-position="right" />
         </el-form-item>
         <el-form-item label="是否免费">
           <el-radio-group v-model="video.free">
@@ -93,6 +93,7 @@
 <script>
 import chapter from '@/api/edu/chapter'
 import video from '@/api/edu/video'
+
 export default {
   data() {
     return {
@@ -167,6 +168,7 @@ export default {
           this.getChapterVideo()
         })
     },
+
     saveOrUpdateVideo() {
       this.addVideo()
     },
@@ -242,11 +244,12 @@ export default {
           this.getChapterVideo()
         })
     },
+    // 添加章节
     saveOrUpdate() {
       if (!this.chapter.id) {
         this.addChapter()
       } else {
-        this.updateChapter
+        this.updateChapter()
       }
     },
     // 根据课程id查询章节和小节
