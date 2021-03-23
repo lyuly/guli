@@ -9,7 +9,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-select v-model="courseQuery.status" clearable placeholder="讲师头衔">
+        <el-select v-model="courseQuery.status" clearable placeholder="课程头衔">
           <el-option :value="Normal" label="已经发布" />
           <el-option :value="Draft" label="未发布" />
         </el-select>
@@ -91,19 +91,41 @@ export default {
   },
   methods: { // 创建具体的方法,调用course.js定义的方法
 
-    // 讲师列表的方法
+    // 课程列表的方法
     getList() {
       course.getListCourse()
         .then(response => { // 请求成功
           // response接口返回的数据
           this.list = response.data.list
+          // this.list = response.data.total
         })
     },
+    // 删除课程信息
+    removeDataById(id) {
+      this.$confirm('此操作将永久删除该课程信息，是否继续？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => { // 点击确定，执行then方法
+        // 调用删除的方法
+        course.deleteCourse(id)
+          .then(res => { // 删除成功
+            // 提示信息
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            })
+            // 回到列表页面
+            this.getList()
+          })
+      })
+    },
+
     // 清空的方法
     resetData() {
       // 表单输入项数据清空
       this.courseQuery = {}
-      // 查询所有讲师数据
+      // 查询所有课程数据
       this.getList()
     }
   }
